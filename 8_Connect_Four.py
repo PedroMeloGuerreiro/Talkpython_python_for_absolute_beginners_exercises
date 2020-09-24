@@ -17,6 +17,7 @@ def main():
         get_play(players[active_player], symbols[active_player], board)
         if winning(board):
             winner = players[active_player]
+            print()
             print(f'Congratulations {winner}! You won!')
             show_board(board)
             break
@@ -59,7 +60,7 @@ def get_play(player, symbol, board):
             continue
         elif board[play_col].count(None) < 1:
             print("That column is already full!")
-            play_col = 10
+            play_col = 100
             continue
 
     free_row = 6 - board[play_col].count(None)
@@ -71,13 +72,13 @@ def winning(board):
 
     # Gathering columns
     for a in range(len(board)):
-        for b in range(len(board[a])-3):
+        for b in range(len(board[0])-3):
             win_comb.append(board[a][b: b+4])
 
     # Gathering rows
-    for a in range(len(board[0])):
-        for b in range(len(board)-3):
-            win_comb.append(board[b][a: a+4])
+    for a in range(len(board)-3):
+        for b in range(len(board[0])):
+            win_comb.append([board[a][b], board[a+1][b], board[a+2][b], board[a+3][b]])
 
     # Gathering diagonals
     for a in range(len(board)-3):
@@ -90,8 +91,8 @@ def winning(board):
         if symbol is not None and all(symbol == uno for uno in cells):
             return True
         else:
-            return False
-
+            continue
+    return False
 
 
 if __name__ == '__main__':
