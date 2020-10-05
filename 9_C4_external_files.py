@@ -1,5 +1,6 @@
 import json
 import os
+import datetime
 
 
 def main():
@@ -10,6 +11,7 @@ def main():
     # Show updated leaderboard
     #Log every step
 
+    log('Game started')
     players = get_players()
     symbols = ["X", "O"]
     board = define_board(7, 6)
@@ -24,6 +26,7 @@ def main():
             winner = players[active_player]
             print()
             print(f'Congratulations {winner}! You won!')
+            log(f'{winner} won the game after {rounds} rounds of play.')
             show_board(board)
             leaderboard(winner)
             show_leaders()
@@ -41,6 +44,7 @@ def define_board(columns, rows):
         for row_num in range(0, rows):
             row.append(None)
         game_board.append(row)
+    log('Game board generated')
     return game_board
 
 
@@ -71,6 +75,7 @@ def get_play(player, symbol, board):
 
     free_row = 6 - board[play_col].count(None)
     board[play_col][free_row] = symbol
+    log(f'{player} played on the column {play_col+1}.')
 
 
 def winning(board):
@@ -104,6 +109,7 @@ def winning(board):
 def get_players():
     player_1 = input("Player 1, please write your name: ")
     player_2 = input("Player 2, please write your name: ")
+    log(f'Player 1 is {player_1} and Player 2 is {player_2}')
     return player_1, player_2
 
 
@@ -132,6 +138,7 @@ def leaderboard(winning_player):
 
     with open(filename, 'w', encoding='utf-8') as fout:
         json.dump(leaders, fout)
+    log(f'Leaderboard updated. {winning_player} now has {leaders[winning_player]} wins.')
 
 
 def show_leaders():
@@ -144,6 +151,16 @@ def show_leaders():
     print("Current leaderboard:")
     for name, wins in sorted_leaderboard[0:5]:
         print(f'{wins} Wins -- {name}')
+
+
+def log(message):
+    directory = os.path.dirname(__file__)
+    filename = os.path.join(directory, 'log.txt')
+
+    with open(filename, 'a', encoding='utf-8') as fin:
+        fin.write(f'[{datetime.datetime.now().isoformat()}] ')
+        fin.write(message)
+        fin.write('\n')
 
 
 if __name__ == '__main__':

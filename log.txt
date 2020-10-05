@@ -1,0 +1,11 @@
+[2020-10-05T16:36:10.927776]  Player 1 is Pedro and Player 2 is Guerreiro
+[2020-10-05T16:36:10.937712] Game board generated
+[2020-10-05T16:36:12.797734] Pedro played on the column 1.
+[2020-10-05T16:36:13.287853] Guerreiro played on the column 2.
+[2020-10-05T16:36:13.737418] Pedro played on the column 1.
+[2020-10-05T16:36:14.567381] Guerreiro played on the column 2.
+[2020-10-05T16:36:15.109535] Pedro played on the column 1.
+[2020-10-05T16:36:15.857437] Guerreiro played on the column 2.
+[2020-10-05T16:36:17.397865] Pedro played on the column 1.
+[2020-10-05T16:36:17.407627] Pedro won the game after 6 rounds of play.
+[2020-10-05T16:36:17.412702] Leaderboard updated. Pedro now has 4 wins.
